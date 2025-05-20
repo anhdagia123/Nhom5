@@ -25,7 +25,7 @@
       <td>
         <a href="<?=ADMIN_URL . '?ctl=editdm&id=' .$cate['id']?>"
          class="btn btn-primary">Sửa</a>
-       <a href="<?=ADMIN_URL . '?ctl=delete&id=' .$cate['id']?>"
+       <a href="<?=ADMIN_URL . '?ctl=deletedm&id=' .$cate['id']?>"
          class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa không?')">Xóa</a>
       </td>
       
