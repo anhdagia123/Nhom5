@@ -9,9 +9,11 @@ require_once __DIR__ ."/../models/Product.php";
 // controller
 require_once __DIR__."/../controllers/Admin/DashboardController.php";
 require_once __DIR__."/../controllers/Admin/AdminCategoryController.php";
+require_once __DIR__."/../controllers/Admin/AdminProductController.php";
 // lay bien ctl lam dieu khien
 $ctl = $_GET['ctl'] ??'';
 match ($ctl) {
+     // danh mục
      ''=> (new DashboardController)->index(),
      'listdm'=>(new AdminCategoryController)->index(),
      'adddm'=>(new AdminCategoryController)->create(),
@@ -19,4 +21,11 @@ match ($ctl) {
      'editdm'=>(new AdminCategoryController)->edit(),
      'updatedm'=>(new AdminCategoryController)->update(),
      'deletedm' =>(new AdminCategoryController)->delete(),
+     // sản phẩm
+     'listsp'=>(new AdminProductController)->index(),
+     'addsp'=>(new AdminProductController)->add(),
+     'storesp'=>(new AdminProductController)->store(),
+     'editsp'=>(new AdminProductController)->edit(),
+     'updatesp'=>(new AdminProductController)->update(),
+     'deletesp'=>(new AdminProductController)->delete(),
 };

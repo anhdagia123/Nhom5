@@ -13,7 +13,7 @@
       <th scope="col">#ID</th>
       <th scope="col">Tên danh mục</th>
       <th scope="col">
-        <a href="<?= ADMIN_URL . '?ctl=adddm'?>" class="btn-btn-primary">Thêm mới</a>
+        <a href="<?= ADMIN_URL . '?ctl=adddm'?>" class="btn btn-primary">Thêm mới</a>
       </th>
     </tr>
   </thead>
