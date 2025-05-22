@@ -21,6 +21,17 @@ class Product extends BaseModel {
         $stmt->execute(['id' => $id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    //  Lay du lieu cho trang chu 
+    public function listProductInCategoryHome($id) {
+         $sql = "SELECT p.*, c.cate_name 
+                FROM product p 
+                JOIN categories c ON p.category_id = c.id 
+                WHERE c.id = :id ORDER BY id  LIMIT 4";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 
     // Thêm sản phẩm
     public function create($data) {

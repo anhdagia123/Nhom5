@@ -28,4 +28,7 @@ match ($ctl) {
      'editsp'=>(new AdminProductController)->edit(),
      'updatesp'=>(new AdminProductController)->update(),
      'deletesp'=>(new AdminProductController)->delete(),
+     
+     
+      default => die("404 - Không tìm thấy hành động phù hợp"),
 };
