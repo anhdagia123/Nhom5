@@ -31,8 +31,12 @@
     <input type="file" name="image" id="" class="form-control">
    </div>
     <div class="mb-3">
-    <label for="" class="form-label">Price</label>
+    <label for="" class="form-label">Giá</label>
     <input type="number" name="price" step="0.1"  value="<?= $product['price']?>" class="form-control">
+   </div>
+   <div class="mb-3">
+    <label for="" class="form-label">Số lượng</label>
+    <input type="number" name="quantity" value="<?= $product['quantity']?>" class="form-control">
    </div>
     <div class="mb-3">
     <label for="" class="form-label">Trạng thái</label>

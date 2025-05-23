@@ -28,7 +28,13 @@
             San pham 
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <?php foreach($categories as $cate) : ?>
+            <li>
+              <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>">
+               <?= $cate['cate_name'] ?>
+              </a>
+            </li>
+            <?php endforeach ?>
           </ul>
         </li>
         
