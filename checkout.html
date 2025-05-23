@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanh toán</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="checkout-container">
+    <h1>Thông tin thanh toán</h1>
+
+    <div class="checkout-wrapper">
+      <!-- Thông tin người nhận -->
+      <div class="customer-info">
+        <h2 class="section-title blue">Thông tin người nhận</h2>
+        <form>
+          <label>Họ và tên</label>
+          <input type="text" placeholder="Nhập họ tên" required>
+
+          <label>Số điện thoại</label>
+          <input type="tel" placeholder="Nhập số điện thoại" required>
+
+          <label>Email</label>
+          <input type="email" placeholder="Nhập email" required>
+
+          <label>Địa chỉ giao hàng</label>
+          <textarea rows="4" placeholder="Nhập địa chỉ giao hàng" required></textarea>
+        </form>
+      </div>
+
+      <!-- Thông tin giỏ hàng -->
+      <div class="order-summary">
+        <h2 class="section-title cyan">Thông tin giỏ hàng</h2>
+        <div class="item">
+          <div>
+            <strong>Sản phẩm 1</strong><br>
+            Số lượng: 2
+          </div>
+          <div>500.000 VNĐ</div>
+        </div>
+        <div class="item">
+          <div>
+            <strong>Sản phẩm 2</strong><br>
+            Số lượng: 1
+          </div>
+          <div>300.000 VNĐ</div>
+        </div>
+        <div class="total">
+          <strong>Tổng tiền:</strong> <span class="price">1.300.000 VNĐ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phương thức thanh toán -->
+    <div class="payment-method">
+      <h2 class="section-title grey">Phương thức thanh toán</h2>
+      <label><input type="radio" name="payment" checked> Thanh toán khi giao hàng (COD)</label>
+    </div>
+  </div>
+</body>
+</html>
