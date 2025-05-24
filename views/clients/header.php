@@ -23,9 +23,11 @@
         <li class="nav-item">
           <a class="nav-link" href="">Gioi thieu</a>
         </li>
-        <li class="nav-item dropdown">
+        
+      </ul>
+      <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="<?=ROOT_URL ?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-user">Account</i>
             <?= $_SESSION['user']['fullname'] ?? '' ?>
           </a>
           <ul class="dropdown-menu">
@@ -45,8 +47,6 @@
             <?php endforeach ?>
           </ul>
         </li>
-        
-      </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>

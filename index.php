@@ -12,7 +12,7 @@ require_once __DIR__ . "/models/User.php";
 // controllers
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/ProductController.php";
-require_once __DIR__ . "/controllers/AuthController.php";
+require_once __DIR__ . "/controllers/Admin/AuthController.php";
 $ctl = $_GET['ctl'] ?? '';
 
 match($ctl) {
