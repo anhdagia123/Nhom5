@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cart-container">
+    <h1>Giỏ hàng của bạn</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Hình ảnh</th>
+          <th>Tên sản phẩm</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><img src="img1.jpg" alt="Tên sản phẩm 1" width="60"></td>
+          <td>Tên sản phẩm 1</td>
+          <td>500.000 VNĐ</td>
+          <td><input type="number" value="2" min="1"></td>
+          <td>1.000.000 VNĐ</td>
+          <td><button class="btn-delete">Xóa</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><img src="img2.jpg" alt="Tên sản phẩm 2" width="60"></td>
+          <td>Tên sản phẩm 2</td>
+          <td>300.000 VNĐ</td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>300.000 VNĐ</td>
+          <td><button class="btn-delete">Xóa</button></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="total-label">Tổng tiền:</td>
+          <td class="total-price">1.300.000 VNĐ</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="cart-actions">
+      <button class="btn-grey">Tiếp tục mua sắm</button>
+      <div class="right-actions">
+        <button class="btn-yellow">Cập nhật giỏ hàng</button>
+        <button class="btn-green">Thanh toán</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
