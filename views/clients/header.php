@@ -23,7 +23,20 @@
         <li class="nav-item">
           <a class="nav-link" href="">Gioi thieu</a>
         </li>
-        
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            San pham 
+          </a>
+          <ul class="dropdown-menu">
+            <?php foreach($categories as $cate) : ?>
+            <li>
+              <a class="dropdown-item" href="<?= ROOT_URL . '?ctl=category&id=' . $cate['id'] ?>">
+               <?= $cate['cate_name'] ?>
+              </a>
+            </li>
+            <?php endforeach ?>
+          </ul>
+        </li>
       </ul>
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="<?=ROOT_URL ?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
