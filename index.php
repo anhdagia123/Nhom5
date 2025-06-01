@@ -27,7 +27,7 @@ match($ctl) {
     'view-cart' => (new CartController)->viewCart(),
     'delete-cart' => (new CartController)->deleteCart(),
     'update-cart' => (new CartController)->updateCart(),
-
+    'checkout' => (new CartController)->viewCheckout(),
     default => (new HomeController)->index(), // thêm dòng này để tránh lỗi khi $ctl không khớp
 };
 

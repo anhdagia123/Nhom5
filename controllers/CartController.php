@@ -82,6 +82,15 @@ class CartController {
 
     return header("Location: " . ROOT_URL . "?ctl=view-cart");
 }
+    public function viewCheckout(){
+        if (!isset($_SESSION['user'])) {
+            return header("Location: " . ROOT_URL . "?ctl=login");
+        }
+        $user = $_SESSION['user'];
+        $carts = $_SESSION['carts'] ?? [];
+        $sumPrice   = (new CartController)->sumPrice();
+        return view('clients.cart.checkout', compact('user', 'carts', 'sumPrice'));
+    }
 
 
 }
