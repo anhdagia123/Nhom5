@@ -19,6 +19,7 @@ class ProductController {
         $title = $product['name'];
         $categories=(new Category)->all();
          $productReleads= (new Product)->listProductRelead($product['category_id'],$id);
+<<<<<<< HEAD
 
          // Lưu thong tin liên quan 
       $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
@@ -35,6 +36,13 @@ class ProductController {
 
 
     
+=======
+         return view('clients.product.detail',
+        compact('product','title','categories','productReleads' )
+    );
+    }
+    // danh sách sản phẩm liên quan
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced
    
 
 }

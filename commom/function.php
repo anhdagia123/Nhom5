@@ -20,6 +20,7 @@ function session_flash($key){
     $message = $_SESSION[$key] ?? '';
     unset($_SESSION[$key]);
     return $message;
+<<<<<<< HEAD
 }
 // chuyển đổi trạng thái đơn hàng
 function translate_status($status){
@@ -30,4 +31,6 @@ function translate_status($status){
         4 => 'Đã hủy',
     ];
     return $status_details[$status];
+=======
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced
 }

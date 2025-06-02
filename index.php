@@ -8,12 +8,16 @@ require_once __DIR__ . "/models/BaseModel.php";
 require_once __DIR__ . "/models/Product.php";
 require_once __DIR__ . "/models/Category.php";
 require_once __DIR__ . "/models/User.php";
+<<<<<<< HEAD
 require_once __DIR__ . "/models/Order.php";
+=======
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced
 
 // controllers
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/ProductController.php";
 require_once __DIR__ . "/controllers/Admin/AuthController.php";
+<<<<<<< HEAD
 require_once __DIR__ . "/controllers/CartController.php";
 $ctl = $_GET['ctl'] ?? '';
 
@@ -35,3 +39,15 @@ match($ctl) {
 };
 
 
+=======
+$ctl = $_GET['ctl'] ?? '';
+
+match($ctl) {
+    '' =>(new HomeController)->index(),
+    'category'=>(new ProductController)->list(),
+    'detail' =>(new ProductController)->show(),
+    'register' => (new AuthController)->register(),
+    'login' => (new AuthController)->login(),
+    'logout' => (new AuthController)->logout(),
+};
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced

@@ -25,11 +25,27 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= ADMIN_URL .'?ctl=listsp' ?>">Sản Phẩm</a>
         </li>
+<<<<<<< HEAD
         <li class="nav-item">
           <a class="nav-link" href="<?= ADMIN_URL .'?ctl=listuser' ?>">Tai khoan</a>
         </li>
        <li class="nav-item">
           <a class="nav-link" href="<?= ADMIN_URL .'?ctl=list-order' ?>">Đơn hàng</a>
+=======
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced
         </li>
       </ul>
       <form class="d-flex" role="search">

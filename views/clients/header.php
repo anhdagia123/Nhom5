@@ -55,9 +55,12 @@
               <?php endif ?>
           </ul>
         </li>
+<<<<<<< HEAD
         <li class="nav-item">
           <a class="nav-link" href="<?= ROOT_URL . '?ctl=view-cart'?>">Giỏ Hàng (<?=  $_SESSION['totalQuantity'] ?? '' ?>)</a>
         </li>
+=======
+>>>>>>> 429314e459d02f5fe13ff411b5c5882dacb6eced
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>

@@ -118,8 +118,8 @@ class CartController {
 
        (new User)->update($user['id'], $user);
        $order_id = (new Order)->create($order);
-
-      
+       
+       $order_detail = new Order;
        $carts = $_SESSION['cart'];
        foreach($carts as $id => $cart){
         $or_detail = [
