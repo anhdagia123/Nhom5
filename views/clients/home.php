@@ -11,35 +11,36 @@
   <div class="row g-4">
     <?php foreach($shirts as $shirt) : ?>
     <div class="col-md-3">
-      <div class="product-box">
-        <img src="<?= ROOT_URL . $shirt['image']?>" alt="<?= $shirt['name']?>" class="product-img">
-        <a href="#" class="product-name"><?= $shirt['name']?></a>
-        <span class="product-price"><?= number_format($shirt['price'])?> ₫</span>
-        <div class="product-buttons">
-          <button class="btn btn-outline-success">Thêm vào giỏ hàng</button>
+        <div class="product-box">
+            <img src="<?= ROOT_URL . $shirt['image'] ?>" alt="<?= $shirt['name'] ?>" class="product-img">
+            <a href="<?= ROOT_URL . '?ctl=detail&id=' . $shirt['id'] ?>" class="product-name">
+                <?= $shirt['name'] ?>
+            </a>
+            <span class="product-price"><?= number_format($shirt['price'], 0, ',', '.') ?> ₫</span>
+            <div class="product-buttons">
+                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $shirt['id'] ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
+            </div>
         </div>
-      </div>
     </div>
-    <?php endforeach ?>
-  </div>
-        
-  
+    <?php endforeach; ?>
+</div>
+
   <h2 class="mb-4 mt-5">QUẦN NAM</h2>
   
   <div class="row g-4">
     <?php foreach($trousers as $trouser) :  ?>
     <div class="col-md-3">
-      <div class="product-box">
-        <img src="<?= ROOT_URL . $trouser['image']?>" alt="<?= $trouser['name']?>" class="product-img">
-        <a href="#" class="product-name"><?= $trouser['name']?></a>
-        <span class="product-price"><?= number_format($trouser['price'])?> ₫</span>
-        <div class="product-buttons">
-          <button class="btn btn-outline-success">Thêm vào giỏ hàng</button>
+        <div class="product-box">
+            <img src="<?= ROOT_URL . $trouser['image'] ?>" alt="<?= $trouser['name'] ?>" class="product-img">
+            <a href="<?= ROOT_URL . '?ctl=detail&id=' . $trouser['id'] ?>" class="product-name"><?= $trouser['name'] ?></a>
+            <span class="product-price"><?= number_format($trouser['price'], 0, ',', '.') ?> ₫</span>
+            <div class="product-buttons">
+                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $trouser['id'] ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
+            </div>
         </div>
-      </div>
     </div>
-    <?php endforeach ?>
-  </div>
+    <?php endforeach; ?>
+</div>
 
   <!-- Sản phẩm bán chạy -->
   <h2 class="mb-4 mt-5 text-danger">Sản phẩm bán chạy</h2>

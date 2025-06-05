@@ -16,7 +16,11 @@
       <p><strong>Mô tả sản phẩm:</strong><br>
        <?= $product['description']?>
       </p>
-      <button class="add-to-cart">Thêm vào giỏ hàng</button>
+      <div class="mt-4">
+        <a href="<?= ROOT_URL .'?ctl=add-cart&id=' .$product['id'] ?>" class="btn btn-success">Thêm vào giỏ hàng</a>
+        
+
+      </div>
     </div>
   </div>
 
@@ -36,7 +40,7 @@
         <a href="<?= ROOT_URL .'?ctl=detail&id=' .$products['id'] ?>" class="product-name"><?= $products['name']?></a>
         <span class="product-price"><?= number_format($products['price'])?> ₫</span>
         <div class="product-buttons">
-          <button class="btn btn-outline-success">Thêm vào giỏ hàng</button>
+          <a href="#" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
         </div>
       </div>
     </div>

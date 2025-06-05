@@ -19,11 +19,24 @@ class ProductController {
         $title = $product['name'];
         $categories=(new Category)->all();
          $productReleads= (new Product)->listProductRelead($product['category_id'],$id);
+
+
+         // Lưu thong tin liên quan 
+      $_SESSION['URI'] = $_SERVER['REQUEST_URI'];
+
+        $_SESSION['totalQuantity'] = (new CartController)->totalSumQuantity();
          return view('clients.product.detail',
         compact('product','title','categories','productReleads' )
+
+        
     );
     }
     // danh sách sản phẩm liên quan
+
+
+
+    
+
    
 
 }

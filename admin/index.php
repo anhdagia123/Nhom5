@@ -7,11 +7,16 @@ require_once __DIR__ ."/../models/BaseModel.php";
 require_once __DIR__ ."/../models/Category.php";
 require_once __DIR__ ."/../models/Product.php";   
 require_once __DIR__ ."/../models/User.php";   
+require_once __DIR__ ."/../models/Order.php"; 
+
+
 // controller
 require_once __DIR__."/../controllers/Admin/DashboardController.php";
 require_once __DIR__."/../controllers/Admin/AdminCategoryController.php";
 require_once __DIR__."/../controllers/Admin/AdminProductController.php";
 require_once __DIR__."/../controllers/Admin/AuthController.php";
+require_once __DIR__."/../controllers/OrderController.php";
+
 // lay bien ctl lam dieu khien
 $ctl = $_GET['ctl'] ??'';
 match ($ctl) {
@@ -34,7 +39,12 @@ match ($ctl) {
      
       default => die("404 - Không tìm thấy hành động phù hợp"),
 
+
        //  User
       'listuser' => (new AuthController)->index(),
       'updateuser' => (new AuthController)->updateActive(),
+
+      // Order
+      'list-order' => (new OrderController)->index(),
+
 };
