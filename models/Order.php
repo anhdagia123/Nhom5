@@ -1,9 +1,9 @@
 <?php
 
-class Order extends BaseModel {
+class Oder extends BaseModel {
     public function all() {
         $sql = "SELECT o.*, u.fullname, u.email, u.address, u.phone 
-                FROM orders o 
+                FROM oders o 
                 JOIN users u ON o.user_id = u.id 
                 ORDER BY o.id DESC";
         $stmt = $this->conn->prepare($sql);
@@ -13,7 +13,7 @@ class Order extends BaseModel {
 
     public function find($id) {
         $sql = "SELECT o.*, u.fullname, u.email, u.address, u.phone 
-                FROM orders o 
+                FROM oders o 
                 JOIN users u ON o.user_id = u.id 
                 WHERE o.id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -23,7 +23,7 @@ class Order extends BaseModel {
     }
 
     public function create($data) {
-        $sql = "INSERT INTO orders (user_id, total_price, status, payment_method) 
+        $sql = "INSERT INTO oders (user_id, total_price, status, payment_method) 
                 VALUES (:user_id, :total_price, :status, :payment_method)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
@@ -31,7 +31,7 @@ class Order extends BaseModel {
     }
 
     public function update($id, $status) {
-        $sql = "UPDATE orders SET status = :status WHERE id = :id";
+        $sql = "UPDATE oders SET status = :status WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'id' => $id,
@@ -39,9 +39,9 @@ class Order extends BaseModel {
         ]);
     }
 
-    public function createOrderDetail($data) {
-        $sql = "INSERT INTO order_details (order_id, product_id, quantity, price) 
-                VALUES (:order_id, :product_id, :quantity, :price)";
+    public function createOderDetail($data) {
+        $sql = "INSERT INTO oder_details (oder_id, product_id, quantity, price) 
+                VALUES (:oder_id, :product_id, :quantity, :price)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
     }
