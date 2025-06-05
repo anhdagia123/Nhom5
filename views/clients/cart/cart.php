@@ -3,7 +3,6 @@
 <div class="cart-container">
     <h1>Giỏ hàng của bạn</h1>
 
-    <!-- Form gửi dữ liệu cập nhật -->
     <form action="<?= ROOT_URL ?>?ctl=update-cart" method="post">
         <table>
             <thead>
@@ -19,21 +18,34 @@
             </thead>
             <tbody>
                 <?php 
-                $total = 0; // tổng tiền toàn bộ giỏ hàng
+                $total = 0; 
                 foreach($carts as $stt => $cart) : 
-                    $subtotal = $cart['price'] * $cart['quantity'];
+                    $id = $cart['id'] ?? $stt;
+                    $quantity = isset($cart['quantity']) ? (int)$cart['quantity'] : 1;
+                    $price = isset($cart['price']) ? (float)$cart['price'] : 0;
+                    $name = isset($cart['name']) ? htmlspecialchars($cart['name']) : 'Không xác định';
+                    $image = isset($cart['image']) ? htmlspecialchars($cart['image']) : '';
+                    $subtotal = $price * $quantity;
                     $total += $subtotal;
                 ?>
                 <tr>
                     <th scope="row"><?= $stt + 1 ?></th>
-                    <td><img src="<?= $cart['image'] ?>" alt="" width="60"></td>
-                    <td><?= $cart['name'] ?></td>
-                    <td><?= number_format($cart['price'], 0, ',', '.') ?> VNĐ</td>
                     <td>
-                        <input type="number" name="quantity[<?= $cart['id'] ?>]" value="<?= $cart['quantity'] ?>" min="1">
+                        <?php if($image): ?>
+                            <img src="<?= $image ?>" alt="<?= $name ?>" width="60">
+                        <?php else: ?>
+                            <span>Không có hình</span>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $name ?></td>
+                    <td><?= number_format($price, 0, ',', '.') ?> VNĐ</td>
+                    <td>
+                        <input type="number" name="quantity[<?= $id ?>]" value="<?= $quantity ?>" min="1">
                     </td>
                     <td><?= number_format($subtotal, 0, ',', '.') ?> VNĐ</td>
-                    <td><a href="<?= ROOT_URL . '?ctl=delete-cart&id=' . $cart['id'] ?>">Xóa</a></td>
+                    <td>
+                        <a href="<?= ROOT_URL . '?ctl=delete-cart&id=' . $id ?>">Xóa</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

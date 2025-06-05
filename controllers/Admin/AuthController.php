@@ -60,6 +60,7 @@ class AuthController{
     header('Location: ' . ROOT_URL . '?ctl=login');
     exit;
 }
+
 public function index() {
         $users = (new User)->all();
         return view('admin.users.list', compact('users'));
@@ -75,5 +76,6 @@ public function index() {
        return  header('Location: ' . ADMIN_URL . '?ctl=listuser' );
 
     }
+
 
 }

@@ -1,11 +1,13 @@
 <?php
 class AdminCategoryController {
+
      public function __construct(){
         $user = $_SESSION['user'] ?? [];
         if ( !$user || $user['role'] != 'admin' ){
             return header("location:" .  ROOT_URL);
         }
     }
+
     public function index() {
         $categories = (new Category)->all();
         // lấy thông báo từ session

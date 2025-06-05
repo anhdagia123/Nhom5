@@ -12,38 +12,34 @@
     <?php foreach($shirts as $shirt) : ?>
     <div class="col-md-3">
         <div class="product-box">
-            <img src="<?= ROOT_URL . $shirt['image'] ?>" alt="<?= $shirt['name'] ?>" class="product-img">
-            <a href="<?= ROOT_URL . '?ctl=detail&id=' . $shirt['id'] ?>" class="product-name">
-                <?= $shirt['name'] ?>
+            <img src="<?= htmlspecialchars(ROOT_URL . $shirt['image']) ?>" alt="<?= htmlspecialchars($shirt['name']) ?>" class="product-img">
+            <a href="<?= htmlspecialchars(ROOT_URL . '?ctl=detail&id=' . $shirt['id']) ?>" class="product-name">
+                <?= htmlspecialchars($shirt['name']) ?>
             </a>
             <span class="product-price"><?= number_format($shirt['price'], 0, ',', '.') ?> ₫</span>
             <div class="product-buttons">
-                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $shirt['id'] ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
+                <a href="<?= htmlspecialchars(ROOT_URL . '?ctl=add-cart&id=' . $shirt['id']) ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
             </div>
         </div>
     </div>
     <?php endforeach; ?>
-</div>
+  </div>
 
-        
-  
   <h2 class="mb-4 mt-5">QUẦN NAM</h2>
-  
   <div class="row g-4">
     <?php foreach($trousers as $trouser) :  ?>
     <div class="col-md-3">
         <div class="product-box">
-            <img src="<?= ROOT_URL . $trouser['image'] ?>" alt="<?= $trouser['name'] ?>" class="product-img">
-            <a href="<?= ROOT_URL . '?ctl=detail&id=' . $trouser['id'] ?>" class="product-name"><?= $trouser['name'] ?></a>
+            <img src="<?= htmlspecialchars(ROOT_URL . $trouser['image']) ?>" alt="<?= htmlspecialchars($trouser['name']) ?>" class="product-img">
+            <a href="<?= htmlspecialchars(ROOT_URL . '?ctl=detail&id=' . $trouser['id']) ?>" class="product-name"><?= htmlspecialchars($trouser['name']) ?></a>
             <span class="product-price"><?= number_format($trouser['price'], 0, ',', '.') ?> ₫</span>
             <div class="product-buttons">
-                <a href="<?= ROOT_URL . '?ctl=add-cart&id=' . $trouser['id'] ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
+                <a href="<?= htmlspecialchars(ROOT_URL . '?ctl=add-cart&id=' . $trouser['id']) ?>" class="btn btn-outline-success">Thêm vào giỏ hàng</a>
             </div>
         </div>
     </div>
     <?php endforeach; ?>
-</div>
-
+  </div>
 
   <!-- Sản phẩm bán chạy -->
   <h2 class="mb-4 mt-5 text-danger">Sản phẩm bán chạy</h2>
@@ -51,9 +47,9 @@
       <?php foreach($bestSellers as $bestSeller): ?>
         <div class="col-md-3">
           <div class="product-box border border-warning">
-            <img src="<?= ROOT_URL . $bestSeller['image']?>" alt="<?= $bestSeller['name']?>" class="product-img">
-            <a href="#" class="product-name"><?= $bestSeller['name']?></a>
-            <span class="product-price"><?= number_format($bestSeller['price'])?> ₫</span>
+            <img src="<?= htmlspecialchars(ROOT_URL . $bestSeller['image']) ?>" alt="<?= htmlspecialchars($bestSeller['name']) ?>" class="product-img">
+            <a href="#" class="product-name"><?= htmlspecialchars($bestSeller['name']) ?></a>
+            <span class="product-price"><?= number_format($bestSeller['price'], 0, ',', '.') ?> ₫</span>
             <div class="product-buttons">
               <button class="btn btn-outline-success">Thêm vào giỏ hàng</button>
             </div>
@@ -61,7 +57,6 @@
         </div>
       <?php endforeach ?>
   </div>
-
+</div>
 
 <?php include_once ROOT_DIR . "views/clients/footer.php"; ?>
-

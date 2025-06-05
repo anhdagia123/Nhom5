@@ -3,6 +3,12 @@
 <div class="checkout-container">
     <h1>Thông tin thanh toán</h1>
 
+    <?php if (!empty($_SESSION['error'])): ?>
+        <div style="color: red; margin-bottom: 20px;">
+            <?= htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
+        </div>
+    <?php endif; ?>
+
     <form action="<?= ROOT_URL ?>?ctl=confirm-order" method="post">
         <div class="checkout-wrapper">
             <!-- Thông tin người nhận -->
@@ -10,18 +16,18 @@
                 <h2 class="section-title blue">Thông tin người nhận</h2>
 
                 <label>Họ và tên</label>
-                <input type="text" name="fullname" value="<?= $user['fullname'] ?? '' ?>" required>
+                <input type="text" name="fullname" value="<?= htmlspecialchars($user['fullname'] ?? '') ?>" required>
 
                 <label>Số điện thoại</label>
-                <input type="tel" name="phone" value="<?= $user['phone'] ?? '' ?>" required>
+                <input type="tel" name="phone" value="<?= htmlspecialchars($user['phone'] ?? '') ?>" required>
 
                 <label>Email</label>
-                <input type="email" name="email" value="<?= $user['email'] ?? '' ?>" required>
+                <input type="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
 
                 <label>Địa chỉ giao hàng</label>
-                <textarea name="address" rows="4" placeholder="Nhập địa chỉ giao hàng" required></textarea>
+                <textarea name="address" rows="4" placeholder="Nhập địa chỉ giao hàng" required><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
 
-                <input type="hidden" name="id" value="<?= $user['id'] ?? '' ?>">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($user['id'] ?? '') ?>">
             </div>
 
             <!-- Thông tin giỏ hàng -->
@@ -36,15 +42,15 @@
                 ?>
                 <div class="item">
                     <div>
-                        <strong><?= $item['name'] ?></strong><br>
-                        Số lượng: <?= $item['quantity'] ?>
+                        <strong><?= htmlspecialchars($item['name']) ?></strong><br>
+                        Số lượng: <?= (int)$item['quantity'] ?>
                     </div>
-                    <div><?= number_format($subtotal) ?> VNĐ</div>
+                    <div><?= number_format($subtotal, 0, ',', '.') ?> VNĐ</div>
                 </div>
                 <?php endforeach; ?>
 
                 <div class="total">
-                    <strong>Tổng tiền:</strong> <span class="price"><?= number_format($total) ?> VNĐ</span>
+                    <strong>Tổng tiền:</strong> <span class="price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span>
                 </div>
             </div>
         </div>
