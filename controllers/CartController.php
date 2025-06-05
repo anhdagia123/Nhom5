@@ -1,4 +1,5 @@
 <?php
+<?php
 class CartController {
     public function addToCart() {
         $id = $_GET['id'] ?? null;
@@ -15,6 +16,7 @@ class CartController {
             $carts[$id]['quantity']++;
         } else {
             $carts[$id] = [
+                'id' => $product['id'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'quantity' => 1,
@@ -30,27 +32,27 @@ class CartController {
     }
 
     public function updateCart() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantity'])) {
-        $carts = $_SESSION['cart'] ?? [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantity'])) {
+            $carts = $_SESSION['cart'] ?? [];
 
-        foreach ($_POST['quantity'] as $id => $qty) {
-            $id = (int)$id;
-            $qty = (int)$qty;
-            if (isset($carts[$id])) {
-                $carts[$id]['quantity'] = max(1, $qty);
+            foreach ($_POST['quantity'] as $id => $qty) {
+                $id = (int)$id;
+                $qty = (int)$qty;
+                if (isset($carts[$id])) {
+                    $carts[$id]['quantity'] = max(1, $qty);
+                }
             }
+
+            $_SESSION['cart'] = $carts;
         }
 
-        $_SESSION['cart'] = $carts;
+        header("Location: " . ROOT_URL . "?ctl=view-cart");
+        exit;
     }
-
-    header("Location: " . ROOT_URL . "?ctl=view-cart");
-    exit;
-}
-
 
     public function deleteCart() {
         $id = $_GET['id'] ?? null;
+
         if ($id && isset($_SESSION['cart'][$id])) {
             unset($_SESSION['cart'][$id]);
         }
@@ -170,3 +172,4 @@ class CartController {
         return view("clients.cart.success");
     }
 }
+

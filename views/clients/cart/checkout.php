@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="<?= ROOT_URL . '?ctl=checkout' ?>" method="POST">
+    <form action="<?= ROOT_URL ?>?ctl=confirm-order" method="post">
         <div class="checkout-wrapper">
             <!-- Thông tin người nhận -->
             <div class="customer-info">
@@ -43,7 +43,7 @@
                 <div class="item">
                     <div>
                         <strong><?= htmlspecialchars($item['name']) ?></strong><br>
-                        Số lượng: <?= $item['quantity'] ?>
+                        Số lượng: <?= (int)$item['quantity'] ?>
                     </div>
                     <div><?= number_format($subtotal, 0, ',', '.') ?> VNĐ</div>
                 </div>
