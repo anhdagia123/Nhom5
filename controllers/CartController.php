@@ -164,6 +164,7 @@ class CartController {
     }
 
     public function checkOut() {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $required = ['id', 'fullname', 'phone', 'address', 'payment'];
 
