@@ -20,6 +20,7 @@ $ctl = $_GET['ctl'] ?? '';
 
 match($ctl) {
     '' => (new HomeController)->index(),
+    'all-products' => (new HomeController)->allProducts(),
     'category' => (new ProductController)->list(),
     'detail' => (new ProductController)->show(),
     'register' => (new AuthController)->register(),

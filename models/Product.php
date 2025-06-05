@@ -10,6 +10,25 @@ class Product extends BaseModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    // models/Product.php
+    public function getAll() {
+    $sql = "SELECT p.*, c.cate_name as category_name
+            FROM product p
+            JOIN categories c ON p.category_id = c.id
+            ORDER BY p.id DESC";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+       public function searchByName($keyword) {
+            $sql = "SELECT * FROM product WHERE name LIKE :keyword";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(['keyword' => '%' . $keyword . '%']);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
     // Lấy sản phẩm thuộc một danh mục cụ thể
     public function listProductInCategory($id) {
