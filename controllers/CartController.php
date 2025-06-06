@@ -190,7 +190,7 @@ class CartController {
             $order = [
                 'user_id' => $user['id'],
                 'payment_method' => $_POST['payment'],
-                'status' => 1,
+                'status' => 0,
                 'total_price' => $sumPrice,
             ];
 

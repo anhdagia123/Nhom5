@@ -120,8 +120,8 @@
           <!--begin::User Menu Dropdown-->
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <img src="<?= ADMIN_URL. 'public/dist/assets/img/user2-160x160.jpg' ?>" class="user-image rounded-circle shadow"
-                alt="User Image" />
+              <img src="<?= ADMIN_URL . 'public/dist/assets/img/user2-160x160.jpg' ?>"
+                class="user-image rounded-circle shadow" alt="User Image" />
               <span class="d-none d-md-inline">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
@@ -203,6 +203,12 @@
               <a href="<?= ADMIN_URL . '?ctl=list-order' ?>" class="nav-link">
                 <i class="nav-icon bi bi-receipt"></i>
                 <p>Đơn hàng</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= ADMIN_URL . '?ctl=/' ?>" class="nav-link">
+                <i class="nav-icon bi bi-box-arrow-right"></i>
+                <p>Đăng xuất</p>
               </a>
             </li>
           </ul>

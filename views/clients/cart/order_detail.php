@@ -3,15 +3,25 @@
 <main class="container my-5">
     <h1 class="mb-4 text-center text-primary">Chi tiết đơn hàng #<?= $order['id'] ?></h1>
     <div class="mb-3">
-        <strong>Thời gian đặt:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'] ?? $order['date'] ?? '')) ?><br>
+        <strong>Thời gian đặt:</strong>
+        <?= date('d/m/Y H:i', strtotime($order['created_at'] ?? $order['date'] ?? '')) ?><br>
         <strong>Trạng thái:</strong>
         <?php
         switch ($order['status']) {
-            case 1: echo '<span class="badge bg-warning text-dark">Chờ xử lý</span>'; break;
-            case 2: echo '<span class="badge bg-info text-dark">Đang giao</span>'; break;
-            case 3: echo '<span class="badge bg-success">Hoàn thành</span>'; break;
-            case 0: echo '<span class="badge bg-danger">Đã hủy</span>'; break;
-            default: echo '<span class="badge bg-secondary">Không xác định</span>';
+            case 0:
+                echo '<span class="badge bg-secondary">Chờ xác nhận</span>';
+                break;
+            case 1:
+                echo '<span class="badge bg-warning text-dark">Đang xử lý</span>';
+                break;
+            case 2:
+                echo '<span class="badge bg-info text-dark">Đang giao</span>';
+                break;
+            case 3:
+                echo '<span class="badge bg-success">Hoàn thành</span>';
+                break;
+            default:
+                echo '<span class="badge bg-secondary">Không xác định</span>';
         }
         ?>
         <br>
@@ -29,14 +39,18 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $total = 0; foreach ($orderDetails as $item): $subtotal = $item['price'] * $item['quantity']; $total += $subtotal; ?>
-                <tr>
-                    <td><img src="<?= ROOT_URL . $item['image'] ?>" alt="" style="width:60px;height:60px;object-fit:cover"></td>
-                    <td><?= htmlspecialchars($item['name']) ?></td>
-                    <td><?= number_format($item['price'], 0, ',', '.') ?> VNĐ</td>
-                    <td><?= $item['quantity'] ?></td>
-                    <td><?= number_format($subtotal, 0, ',', '.') ?> VNĐ</td>
-                </tr>
+                <?php $total = 0;
+                foreach ($orderDetails as $item):
+                    $subtotal = $item['price'] * $item['quantity'];
+                    $total += $subtotal; ?>
+                    <tr>
+                        <td><img src="<?= ROOT_URL . $item['image'] ?>" alt=""
+                                style="width:60px;height:60px;object-fit:cover"></td>
+                        <td><?= htmlspecialchars($item['name']) ?></td>
+                        <td><?= number_format($item['price'], 0, ',', '.') ?> VNĐ</td>
+                        <td><?= $item['quantity'] ?></td>
+                        <td><?= number_format($subtotal, 0, ',', '.') ?> VNĐ</td>
+                    </tr>
                 <?php endforeach; ?>
                 <tr>
                     <td colspan="4" class="text-end"><strong>Tổng tiền:</strong></td>
