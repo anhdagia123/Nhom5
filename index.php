@@ -16,6 +16,7 @@ require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/ProductController.php";
 require_once __DIR__ . '/controllers/CartController.php';
 require_once __DIR__ . "/controllers/Admin/AuthController.php";
+require_once __DIR__ . "/controllers/OrderController.php";
 $ctl = $_GET['ctl'] ?? '';
 
 match($ctl) {
@@ -33,5 +34,7 @@ match($ctl) {
     'view-checkout' => (new CartController)->viewCheckout(),
     'checkout' => (new CartController)->checkOut(),
     'success' => (new CartController)->success(),
+    'my-orders' => (new OrderController)->myOrders(),
+    'order-detail' => (new OrderController)->orderDetail(),
     default => (new HomeController)->index(),
 };

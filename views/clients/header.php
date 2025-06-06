@@ -67,6 +67,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                             <?php if (isset($_SESSION['user'])): ?>
                                 <li><a class="dropdown-item" href="<?= ROOT_URL ?>">Hồ sơ</a></li>
+                                <li><a class="dropdown-item" href="<?= ROOT_URL . '?ctl=my-orders' ?>">Đơn hàng của tôi</a></li>
                                 <li><a class="dropdown-item" href="<?= ROOT_URL . '?ctl=logout' ?>">Đăng xuất</a></li>
                             <?php else: ?>
                                 <li><a class="dropdown-item" href="<?= ROOT_URL . '?ctl=login' ?>">Đăng nhập</a></li>
