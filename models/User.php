@@ -43,4 +43,5 @@ class User extends BaseModel {
 
         $stmt->execute(['id' => $id, 'active' => $active]);
     }
+    
 }
