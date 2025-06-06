@@ -1,47 +1,97 @@
-
 <?php include_once ROOT_DIR . "views/clients/header.php"; ?>
 
 <!-- Alert nổi trên đầu trang, không ảnh hưởng bố cục -->
-<div id="global-alert" style="display:none;position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:2000;min-width:100%;max-width:90vh;"></div>
+<div id="global-alert" style="display:none;position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:2000;min-width:320px;max-width:90vw;"></div>
 
-<?php if (isset($_SESSION['success'])): ?>
-    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-    <?php unset($_SESSION['success']); ?>
-<?php endif; ?>
-
-<div class="product-container">
-    <div class="product-image">
-      <img src="<?= $product['image']?>" alt="<?= $product['name'] ?>">
+<div class="container my-5">
+  <div class="row g-4">
+    <!-- Hình ảnh sản phẩm -->
+    <div class="col-md-5">
+      <div class="border rounded shadow-sm bg-white p-3">
+        <img src="<?= $product['image']?>" alt="<?= $product['name'] ?>" class="img-fluid w-100 rounded" style="object-fit:cover;max-height:400px;">
+      </div>
     </div>
-    <div class="product-info">
-      <h1><?= $product['name'] ?></h1>
-      <p class="status">Trạng thái:
-        <?php if($product['quantity']>0) : ?>
-      <span class="in-stock">Còn hàng</span></p>
-      <?php else: ?>
-         <span class="btn btn-danger">Hết hàng</span></p>
-        <?php endif?>
-      <p class="price">Giá: <?= number_format($product['price']) ?></p>
-      <p><strong>Số lượng còn:</strong> <span id="remain-qty"><?= $product['quantity'] ?></span></p>
-      <p><strong>Mô tả sản phẩm:</strong><br>
-       <?= $product['description']?>
-      </p>
-      <div class="mt-4">
-       <?php if($product['quantity'] > 0): ?>
-      <button id="add-to-cart-btn" class="btn btn-success">Thêm vào giỏ hàng</button>
-      <?php else: ?>
-      <button class="btn btn-secondary" disabled>Hết hàng</button>
-      <?php endif; ?>
-      <!-- Đã bỏ alert cũ ở đây -->
+    <!-- Thông tin sản phẩm -->
+    <div class="col-md-7">
+      <div class="border rounded shadow-sm bg-white p-4 h-100 d-flex flex-column">
+        <h1 class="fw-bold mb-3"><?= htmlspecialchars($product['name']) ?></h1>
+        <div class="mb-2">
+          <span class="badge <?= $product['quantity'] > 0 ? 'bg-success' : 'bg-danger' ?>">
+            <?= $product['quantity'] > 0 ? 'Còn hàng' : 'Hết hàng' ?>
+          </span>
+        </div>
+        <div class="mb-3">
+          <span class="fs-3 text-danger fw-bold"><?= number_format($product['price']) ?> ₫</span>
+        </div>
+        <div class="mb-3">
+          <strong>Số lượng còn:</strong>
+          <span id="remain-qty" class="fw-bold"><?= $product['quantity'] ?></span>
+        </div>
+        <div class="mb-3">
+          <strong>Mô tả sản phẩm:</strong>
+          <div class="text-secondary"><?= nl2br(htmlspecialchars($product['description'])) ?></div>
+        </div>
+        <div class="mt-auto">
+          <?php if($product['quantity'] > 0): ?>
+            <button id="add-to-cart-btn" class="btn btn-success btn-lg w-100 mb-2">
+              <i class="fa fa-cart-plus me-2"></i>Thêm vào giỏ hàng
+            </button>
+          <?php else: ?>
+            <button class="btn btn-secondary btn-lg w-100 mb-2" disabled>Hết hàng</button>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="product-description">
-  <h2>Mô tả chi tiết</h2>
-  <?= $product['content'] ?>
+  <!-- Mô tả chi tiết -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="border rounded bg-white p-4 shadow-sm">
+        <h2 class="mb-3 fs-4 fw-bold text-primary">Mô tả chi tiết</h2>
+        <div><?= $product['content'] ?></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bình luận sản phẩm -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="border rounded bg-white p-4 shadow-sm">
+        <h3 class="mb-3 fs-5 fw-bold text-primary">Bình luận sản phẩm</h3>
+        <?php if (!empty($commentError)): ?>
+          <div class="alert alert-danger"><?= htmlspecialchars($commentError) ?></div>
+        <?php endif; ?>
+
+        <?php if (!isset($_SESSION['user'])): ?>
+          <div class="alert alert-warning">Bạn cần <a href="<?= ROOT_URL . '?ctl=login' ?>">đăng nhập</a> để bình luận.</div>
+        <?php elseif (!$canComment): ?>
+          <div class="alert alert-info">Chỉ khách đã mua sản phẩm này mới được bình luận.</div>
+        <?php else: ?>
+          <form method="post" action="" class="mb-4">
+            <div class="mb-3">
+              <textarea name="comment" class="form-control" rows="3" required placeholder="Nhập bình luận..."></textarea>
+            </div>
+            <button type="submit" name="submit_comment" class="btn btn-primary">Gửi bình luận</button>
+          </form>
+        <?php endif; ?>
+
+        <hr>
+        <div class="comment-list">
+          <?php foreach ($comments as $row): ?>
+            <div class="mb-3 pb-2 border-bottom">
+              <strong class="text-dark"><?= htmlspecialchars($row['username']) ?></strong>:
+              <span><?= nl2br(htmlspecialchars($row['content'])) ?></span>
+              <div class="text-muted small"><?= $row['created_at'] ?></div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Alert JS -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('add-to-cart-btn');
