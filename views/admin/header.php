@@ -157,12 +157,6 @@
                 <p>Tài khoản</p>
               </a>
             </li>
-              <li class="nav-item">
-              <a href="<?= ADMIN_URL . '?ctl=listcomment' ?>" class="nav-link">
-                <i class="nav-icon bi bi-chat-dots"></i>
-                <p>Bình luận</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="<?= ADMIN_URL . '?ctl=list-order' ?>" class="nav-link">
                 <i class="nav-icon bi bi-receipt"></i>
