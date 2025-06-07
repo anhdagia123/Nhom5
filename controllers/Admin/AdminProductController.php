@@ -1,5 +1,14 @@
 <?php 
 class AdminProductController {
+
+     public function __construct(){
+        $user = $_SESSION['user'] ?? [];
+        if ( !$user || $user['role'] != 'admin' ){
+            return header("location:" .  ROOT_URL);
+        }
+    }
+
+
 public function index(){
     $product = (new Product)->all();
     $message = session_flash('message');
