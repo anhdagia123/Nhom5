@@ -21,6 +21,25 @@ class Product extends BaseModel {
         $stmt->execute(['id' => $id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+     // models/Product.php
+    public function getAll() {
+    $sql = "SELECT p.*, c.cate_name as category_name
+            FROM product p
+            JOIN categories c ON p.category_id = c.id
+            ORDER BY p.id DESC";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+       public function searchByName($keyword) {
+            $sql = "SELECT * FROM product WHERE name LIKE :keyword";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(['keyword' => '%' . $keyword . '%']);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     //  Lay du lieu cho trang chu 
     public function listProductInCategoryHome($id) {
          $sql = "SELECT p.*, c.cate_name 
@@ -80,4 +99,21 @@ class Product extends BaseModel {
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+        public function getOne($id)
+    {
+        $sql = "SELECT * FROM product WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function updateQuantity($id, $new_quantity)
+    {
+        $sql = "UPDATE product SET quantity = :quantity WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'quantity' => $new_quantity,
+            'id' => $id
+        ]);
+    }
+
 }
