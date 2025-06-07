@@ -1,7 +1,6 @@
-
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 
-<div class="container py-4">
+<div class="container">
     <div class="card shadow-sm border-0">
         <div class="card-header bg-white border-bottom">
             <h5 class="mb-0 fw-bold text-primary">Danh sách người dùng</h5>
@@ -55,6 +54,15 @@
             </table>
         </div>
     </div>
+      <nav>
+  <ul class="pagination justify-content-center mt-3">
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+        <a class="page-link" href="?ctl=listuser&page=<?= $i ?>"><?= $i ?></a>
+      </li>
+    <?php endfor ?>
+  </ul>
+</nav>
 </div>
 
 <?php include_once ROOT_DIR . "views/admin/footer.php" ?>
