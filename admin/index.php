@@ -8,6 +8,7 @@ require_once __DIR__ . "/../models/Category.php";
 require_once __DIR__ . "/../models/Product.php";
 require_once __DIR__ . "/../models/User.php";
 require_once __DIR__ . "/../models/admin/orderModel.php";
+require_once __DIR__ . "/../models/admin/DashboardModel.php";
 // controller
 require_once __DIR__ . "/../controllers/Admin/DashboardController.php";
 require_once __DIR__ . "/../controllers/Admin/AdminCategoryController.php";
@@ -45,4 +46,7 @@ match ($ctl) {
       'listuser' => (new AuthController)->index(),
       'updateuser' => (new AuthController)->updateActive(),
       '/' => (new AuthController)->logout(),
+      // Dashboard
+      "order-detail-dashboard" => (new DashboardController)->detail(),
+      
 };

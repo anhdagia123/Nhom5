@@ -32,48 +32,36 @@
                 </thead>
                 <tbody>
                     <?php foreach ($product as $pro): ?>
-                        <tr>
-                            <th scope="row"><?= $pro['id'] ?></th>
-                            <td><?= htmlspecialchars($pro['name']) ?></td>
-                            <td>
-                                <img src="<?= ROOT_URL . $pro['image'] ?>" width="60" class="rounded shadow-sm border"
-                                    alt="">
-                            </td>
-                            <td class="text-danger fw-bold"><?= number_format($pro['price']) ?> VNĐ</td>
-                            <td><?= $pro['quantity'] ?></td>
-                            <td>
-                                <?php if ($pro['status']): ?>
-                                    <span class="badge bg-success">Đang kinh doanh</span>
-                                <?php else: ?>
-                                    <span class="badge bg-secondary">Ngừng kinh doanh</span>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= htmlspecialchars($pro['cate_name']) ?></td>
-                            <td>
-                                <a href="<?= ADMIN_URL . '?ctl=editsp&id=' . $pro['id'] ?>"
-                                    class="btn btn-primary btn-sm me-1">
-                                    <i class="bi bi-pencil-square"></i> Sửa
-                                </a>
-                                <a href="<?= ADMIN_URL . '?ctl=deletesp&id=' . $pro['id'] ?>" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Bạn có muốn xóa không?')">
-                                    <i class="bi bi-trash"></i> Xóa
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th scope="row"><?= $pro['id'] ?></th>
+                        <td><?= htmlspecialchars($pro['name']) ?></td>
+                        <td>
+                            <img src="<?= ROOT_URL . $pro['image'] ?>" width="60" class="rounded shadow-sm border" alt="">
+                        </td>
+                        <td class="text-danger fw-bold"><?= number_format($pro['price']) ?> VNĐ</td>
+                        <td><?= $pro['quantity'] ?></td>
+                        <td>
+                            <?php if ($pro['status']): ?>
+                                <span class="badge bg-success">Đang kinh doanh</span>
+                            <?php else: ?>
+                                <span class="badge bg-secondary">Ngừng kinh doanh</span>
+                            <?php endif; ?>
+                        </td>
+                        <td><?= htmlspecialchars($pro['cate_name']) ?></td>
+                        <td>
+                            <a href="<?= ADMIN_URL . '?ctl=editsp&id=' . $pro['id'] ?>" class="btn btn-primary btn-sm me-1">
+                                <i class="bi bi-pencil-square"></i> Sửa
+                            </a>
+                            <a href="<?= ADMIN_URL . '?ctl=deletesp&id=' . $pro['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có muốn xóa không?')">
+                                <i class="bi bi-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
         </div>
     </div>
-    <nav>
-        <ul class="pagination justify-content-center mt-3">
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-                    <a class="page-link" href="?ctl=listsp&page=<?= $i ?>"><?= $i ?></a>
-                </li>
-            <?php endfor ?>
-        </ul>
-    </nav>
 </div>
 
 <?php include_once ROOT_DIR . "views/admin/footer.php" ?>
