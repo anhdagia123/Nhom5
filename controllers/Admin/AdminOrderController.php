@@ -30,23 +30,28 @@ class AdminOrderController {
     }
 
     // Cập nhật trạng thái đơn hàng qua AJAX
-    public function updateOrderStatus() {
-        $id = (int)($_POST['id'] ?? 0);
-        $status = (int)($_POST['status'] ?? 0);
+   public function updateOrderStatus() {
+    $id = (int)($_POST['id'] ?? 0);
+    $status = (int)($_POST['status'] ?? 0);
 
-        $order = (new OrderModel)->find($id);
-        if (!$order) {
-            echo json_encode(['success' => false, 'message' => 'Không tìm thấy đơn hàng!']);
-            exit;
-        }
-        if ($status < $order['status']) {
-            echo json_encode(['success' => false, 'message' => 'Không thể quay lại trạng thái trước đó!']);
-            exit;
-        }
-        (new OrderModel)->updateStatus($id, $status);
-        echo json_encode(['success' => true]);
+    $order = (new OrderModel)->find($id);
+    if (!$order) {
+        echo json_encode(['success' => false, 'message' => 'Không tìm thấy đơn hàng!']);
         exit;
     }
+    if ($status < $order['status']) {
+        echo json_encode(['success' => false, 'message' => 'Không thể quay lại trạng thái trước đó!']);
+        exit;
+    }
+    // Không cho phép admin cập nhật trực tiếp lên trạng thái 3
+    if ($status == 3) {
+        echo json_encode(['success' => false, 'message' => 'Trạng thái "Đã giao thành công" chỉ được cập nhật khi khách xác nhận đã nhận hàng!']);
+        exit;
+    }
+    (new OrderModel)->updateStatus($id, $status);
+    echo json_encode(['success' => true]);
+    exit;
+}
 
     // Xóa đơn hàng
     public function delete() {

@@ -47,15 +47,16 @@
                 </span>
               </td>
               <td>
-                <select class="form-select form-select-sm order-status" data-id="<?= $order['id'] ?>">
-                  <?php foreach ($statusText as $key => $text): ?>
-                    <option value="<?= $key ?>"
-                      <?= $order['status'] == $key ? 'selected' : ($key < $order['status'] ? 'disabled' : '') ?>
-                      <?= $order['status'] == $key ? 'data-current="1"' : '' ?>>
-                      <?= $text ?>
-                    </option>
-                  <?php endforeach ?>
-                </select>
+               <select class="form-select form-select-sm order-status" data-id="<?= $order['id'] ?>">
+                <?php foreach ($statusText as $key => $text): ?>
+                  <option value="<?= $key ?>"
+                    <?= $order['status'] == $key ? 'selected' : ($key < $order['status'] ? 'disabled' : '') ?>
+                    <?= $key == 3 ? 'disabled' : '' ?>
+                    <?= $order['status'] == $key ? 'data-current="1"' : '' ?>>
+                    <?= $text ?>
+                  </option>
+                <?php endforeach ?>
+              </select>
               </td>
               <td>
                 <a href="<?= ADMIN_URL . '?ctl=order-detail&id=' . $order['id'] ?>" class="btn btn-primary btn-sm">Xem</a>
