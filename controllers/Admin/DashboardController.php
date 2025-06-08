@@ -12,4 +12,9 @@
     public function index(){
         return view('admin.dashboard');
     }
+    public function logout() {
+    session_unset();
+    session_destroy();
+    return header('Location: ' .ROOT_URL );
+}
  }

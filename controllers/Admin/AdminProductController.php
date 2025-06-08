@@ -9,10 +9,19 @@ class AdminProductController {
     }
 
 
-public function index(){
-    $product = (new Product)->all();
+public function index() {
+    $productModel = new Product();
+    $limit = 5; // Số sản phẩm mỗi trang
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    if ($page < 1) $page = 1;
+    $offset = ($page - 1) * $limit;
+
+    $product = $productModel->paginate($limit, $offset);
+    $totalProducts = $productModel->countAll();
+    $totalPages = ceil($totalProducts / $limit);
+
     $message = session_flash('message');
-    return view('admin.product.list',compact('product','message'));
+    return view('admin.product.list', compact('product', 'message', 'page', 'totalPages'));
 }
 //  thêm
 public function add(){
@@ -86,6 +95,7 @@ public function add(){
         header('Location: ' . ADMIN_URL . '?ctl=listsp');
         die;
     }
+    
 
 
 }
