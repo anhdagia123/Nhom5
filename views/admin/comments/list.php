@@ -1,4 +1,3 @@
-
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 <style>
     #alert-message {
@@ -39,27 +38,28 @@
                 </thead>
                 <tbody>
                     <?php foreach ($comments as $cmt): ?>
-                    <tr>
-                        <td><?= $cmt['id'] ?></td>
-                        <td><?= htmlspecialchars($cmt['product_name']) ?></td>
-                        <td><?= htmlspecialchars($cmt['username']) ?></td>
-                        <td><?= htmlspecialchars($cmt['content']) ?></td>
-                        <td><?= $cmt['created_at'] ?></td>
-                        <td>
-                            <?php if ($cmt['status'] == 0): ?>
-                                <span class="badge bg-success">Hiện</span>
-                            <?php else: ?>
-                                <span class="badge bg-secondary">Ẩn</span>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <?php if ($cmt['status'] == 0): ?>
-                                <a href="?ctl=hidecomment&id=<?= $cmt['id'] ?>" class="btn btn-warning btn-sm">Ẩn</a>
-                            <?php else: ?>
-                                <a href="?ctl=showcomment&id=<?= $cmt['id'] ?>" class="btn btn-success btn-sm">Hiện</a>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
+                        <?php $status = $cmt['status'] ?? 0; ?>
+                        <tr>
+                            <td><?= $cmt['id'] ?></td>
+                            <td><?= htmlspecialchars($cmt['product_name']) ?></td>
+                            <td><?= htmlspecialchars($cmt['username']) ?></td>
+                            <td><?= htmlspecialchars($cmt['content']) ?></td>
+                            <td><?= $cmt['created_at'] ?></td>
+                            <td>
+                                <?php if ($status == 0): ?>
+                                    <span class="badge bg-success">Hiện</span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary">Ẩn</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if ($status == 0): ?>
+                                    <a href="?ctl=hidecomment&id=<?= $cmt['id'] ?>" class="btn btn-warning btn-sm">Ẩn</a>
+                                <?php else: ?>
+                                    <a href="?ctl=showcomment&id=<?= $cmt['id'] ?>" class="btn btn-success btn-sm">Hiện</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
