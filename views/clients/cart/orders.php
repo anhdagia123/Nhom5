@@ -12,7 +12,7 @@
                     <th>Thời gian</th>
                     <th>Trạng thái</th>
                     <th>Tổng tiền</th>
-                    <th>Hành động</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,39 +34,28 @@
                             <td><?= date('d/m/Y H:i', strtotime($order['created_at'] ?? $order['date'] ?? '')) ?></td>
                             <td>
                                 <?php
-                                switch ($order['status']) {
-                                    case 0:
-                                        echo '<span class="badge bg-secondary">Chờ xác nhận</span>';
-                                        break;
-                                    case 1:
-                                        echo '<span class="badge bg-warning text-dark">Đang xử lý</span>';
-                                        break;
-                                    case 2:
-                                        echo '<span class="badge bg-info text-dark">Đang giao</span>';
-                                        break;
-                                    case 3:
-                                        echo '<span class="badge bg-success">Hoàn thành</span>';
-                                        break;
-                                    default:
-                                        echo '<span class="badge bg-secondary">Không xác định</span>';
-                                }
-                                ?>
+                                    switch ($order['status']) {
+                                        case 0:
+                                            echo '<span class="badge bg-secondary">Chờ xác nhận</span>';
+                                            break;
+                                        case 1:
+                                            echo '<span class="badge bg-warning text-dark">Đang xử lý</span>';
+                                            break;
+                                        case 2:
+                                            echo '<span class="badge bg-info text-dark">Đang giao</span>';
+                                            break;
+                                        case 3:
+                                            echo '<span class="badge bg-success">Hoàn thành</span>';
+                                            break;
+                                        default:
+                                            echo '<span class="badge bg-secondary">Không xác định</span>';
+                                    }
+                                    ?>
                             </td>
                             <td class="text-danger fw-bold"><?= number_format($order['total_price'], 0, ',', '.') ?> VNĐ</td>
-                            <td class="text-center">
-    <a href="<?= ROOT_URL ?>?ctl=order-detail&id=<?= $order['id'] ?>" class="btn btn-outline-primary btn-sm mb-1 rounded-pill px-3">
-        <i class="bi bi-eye"></i> Xem chi tiết
-    </a>
-    <?php if ($order['status'] == 2): ?>
-        <form method="post" action="<?= ROOT_URL ?>?ctl=confirm-order" class="d-inline">
-            <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-            <button type="submit" class="btn btn-success btn-sm mb-1 rounded-pill px-3"
-                onclick="return confirm('Bạn chắc chắn đã nhận được hàng?')">
-                <i class="bi bi-check-circle"></i> Xác nhận nhận hàng
-            </button>
-        </form>
-    <?php endif; ?>
-</td>
+                            <td>
+                                <a href="<?= ROOT_URL ?>?ctl=order-detail&id=<?= $order['id'] ?>" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

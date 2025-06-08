@@ -27,22 +27,13 @@
             <p><strong>Thời gian đặt:</strong> <?= date('d/m/Y H:i', strtotime($order['created_at'] ?? $order['date'] ?? '')) ?></p>
             <p><strong>Trạng thái:</strong>
                 <?php
-                 switch ($order['status']) {
-                                        case 0:
-                                            echo '<span class="badge bg-secondary">Chờ xác nhận</span>';
-                                            break;
-                                        case 1:
-                                            echo '<span class="badge bg-warning text-dark">Đang xử lý</span>';
-                                            break;
-                                        case 2:
-                                            echo '<span class="badge bg-info text-dark">Đang giao</span>';
-                                            break;
-                                        case 3:
-                                            echo '<span class="badge bg-success">Hoàn thành</span>';
-                                            break;
-                                        default:
-                                            echo '<span class="badge bg-secondary">Không xác định</span>';
-                                    }
+                switch ($order['status']) {
+                    case 1: echo '<span class="badge bg-warning text-dark">Chờ xử lý</span>'; break;
+                    case 2: echo '<span class="badge bg-info text-dark">Đang giao</span>'; break;
+                    case 3: echo '<span class="badge bg-success">Hoàn thành</span>'; break;
+                    case 0: echo '<span class="badge bg-danger">Đã hủy</span>'; break;
+                    default: echo '<span class="badge bg-secondary">Không xác định</span>';
+                }
                 ?>
             </p>
             <div class="table-responsive">
