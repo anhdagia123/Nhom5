@@ -70,7 +70,7 @@
           <div class="col-md-3">
             <div class="product-box border border-warning">
               <img src="<?= ROOT_URL . $bestSeller['image']?>" alt="<?= $bestSeller['name']?>" class="product-img">
-              <a href="#" class="product-name"><?= $bestSeller['name']?></a>
+              <a href="<?= ROOT_URL . '?ctl=detail&id=' . $trouser['id'] ?>" class="product-name"><?= $bestSeller['name']?></a>
               <span class="product-price"><?= number_format($bestSeller['price'])?> ₫</span>
               <div class="product-buttons">
                  <div class="product-buttons">
