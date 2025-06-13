@@ -143,7 +143,11 @@
             <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-funnel me-1"></i> Lọc</button>
           </div>
         </form>
+<<<<<<< HEAD
         <canvas id="chart" max-height="150" class="bg-white rounded shadow-sm w-100"></canvas>
+=======
+        <canvas id="chart" height="150" class="bg-white rounded shadow-sm w-100"></canvas>
+>>>>>>> 3dcf4b17b6e892d1284f23e9229b1179de94e50a
       </div>
     </div>
 
