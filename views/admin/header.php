@@ -1,5 +1,4 @@
-
-
+<?php $user = $_SESSION['user'] ?>
 <!doctype html>
 <html lang="en">
 <!--begin::Head-->
@@ -61,52 +60,41 @@
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->
         <ul class="navbar-nav ms-auto">
-          <!--begin::Navbar Search-->
-          <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-              <i class="bi bi-search"></i>
-            </a>
-          </li>
-          <!--end::Navbar Search-->
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-lte-toggle="fullscreen">
-              <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-              <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
-            </a>
-          </li>
-          <!--end::Fullscreen Toggle-->
+
+
           <!--begin::User Menu Dropdown-->
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <img src="<?= ADMIN_URL . 'public/dist/assets/img/user2-160x160.jpg' ?>"
-                class="user-image rounded-circle shadow" alt="User Image" />
-              <span class="d-none d-md-inline">Alexander Pierce</span>
+              <?php if (!empty($user['avatar'])): ?>
+                <img src="<?= htmlspecialchars($user['avatar']) ?>" class="user-image rounded-circle shadow"
+                  alt="User Image" />
+              <?php endif; ?>
+
+              <span class="d-none d-md-inline"><?= htmlspecialchars($_SESSION["user"]['fullname']) ?></span>
             </a>
+
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
-              <li class="user-header text-bg-primary">
-                <img src="../../dist/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image" />
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2023</small>
-                </p>
-              </li>
-              <!--end::User Image-->
-              <!--begin::Menu Body-->
-              <li class="user-body">
-                <!--begin::Row-->
-                <div class="row">
-                  <div class="col-4 text-center"><a href="#">Followers</a></div>
-                  <div class="col-4 text-center"><a href="#">Sales</a></div>
-                  <div class="col-4 text-center"><a href="#">Friends</a></div>
+              <li class="user-header text-bg-primary text-center py-4">
+                <div class="mx-auto mb-2" style="width: 100px; height: 100px;">
+                  <?php if (!empty($user['avatar'])): ?>
+                    <img src="<?= htmlspecialchars($user['avatar']) ?>"
+                      class="rounded-circle shadow w-100 h-100 object-fit-cover" alt="User Image" />
+                  <?php else: ?>
+                    <div class="bg-light rounded-circle w-100 h-100 d-flex align-items-center justify-content-center">
+                      <i class="text-secondary">No Avatar</i>
+                    </div>
+                  <?php endif; ?>
                 </div>
-                <!--end::Row-->
+
+                <p class="mt-2 text-light fw-bold mb-0"><?= htmlspecialchars($user['fullname']) ?></p>
+                <small class="text-light"><?= htmlspecialchars($user['email']) ?></small>
               </li>
-              <!--end::Menu Body-->
+
+              <!--end::User Image-->
               <!--begin::Menu Footer-->
-              <li class="user-footer">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+              <li class="user-footer text-center">
+                <a href="?ctl=profile" class="btn btn-default btn-flat">Profile</a>
               </li>
               <!--end::Menu Footer-->
             </ul>
@@ -155,6 +143,12 @@
               <a href="<?= ADMIN_URL . '?ctl=listuser' ?>" class="nav-link">
                 <i class="nav-icon bi bi-person"></i>
                 <p>Tài khoản</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= ADMIN_URL . '?ctl=listcomment' ?>" class="nav-link">
+                <i class="nav-icon bi bi-chat-dots"></i>
+                <p>Bình luận</p>
               </a>
             </li>
             <li class="nav-item">

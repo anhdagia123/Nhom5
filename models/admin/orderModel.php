@@ -3,7 +3,7 @@ class OrderModel extends BaseModel
 {
     // Lấy tất cả đơn hàng
 
-    public function all($limit = 10, $offset = 0)
+    public function all($limit = 5, $offset = 0)
     {
         $sql = "SELECT 
                 o.*, 

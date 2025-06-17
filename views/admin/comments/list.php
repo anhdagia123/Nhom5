@@ -65,6 +65,15 @@
             </table>
         </div>
     </div>
+    <nav>
+      <ul class="pagination justify-content-center mt-3">
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+            <a class="page-link" href="?ctl=listcomment&page<?= $i ?>"><?= $i ?></a>
+          </li>
+        <?php endfor ?>
+      </ul>
+    </nav>
 </div>
 <?php include_once ROOT_DIR . "views/admin/footer.php" ?>
 

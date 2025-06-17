@@ -44,7 +44,7 @@ class CommentModelAdmin extends BaseModel
         $sql = "SELECT c.*, u.fullname as username, p.name as product_name
                 FROM comments c
                 JOIN users u ON c.user_id = u.id
-                JOIN products p ON c.product_id = p.id
+                JOIN product p ON c.product_id = p.id
                 ORDER BY c.created_at DESC
                 LIMIT :limit OFFSET :offset";
         $stmt = $this->conn->prepare($sql);

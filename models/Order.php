@@ -1,8 +1,10 @@
 <?php
 
-class Order extends BaseModel {
+class Order extends BaseModel
+{
     // Lấy tất cả đơn hàng (admin)
-    public function all() {
+    public function all()
+    {
         $sql = "SELECT o.*, u.fullname, u.email, u.address, u.phone 
                 FROM orders o 
                 JOIN users u ON o.user_id = u.id 
@@ -13,7 +15,8 @@ class Order extends BaseModel {
     }
 
     // Lấy đơn hàng theo user (cho khách)
-    public function getByUser($user_id) {
+    public function getByUser($user_id)
+    {
         $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['user_id' => $user_id]);
@@ -21,7 +24,8 @@ class Order extends BaseModel {
     }
 
     // Lấy thông tin 1 đơn hàng (admin hoặc khách)
-    public function find($id) {
+    public function find($id)
+    {
         $sql = "SELECT o.*, u.fullname, u.email, u.address, u.phone 
                 FROM orders o 
                 JOIN users u ON o.user_id = u.id 
@@ -32,7 +36,8 @@ class Order extends BaseModel {
     }
 
     // Tạo đơn hàng mới
-    public function create($data) {
+    public function create($data)
+    {
         $sql = "INSERT INTO orders (user_id, total_price, status, payment_method) 
                 VALUES (:user_id, :total_price, :status, :payment_method)";
         $stmt = $this->conn->prepare($sql);
@@ -41,7 +46,8 @@ class Order extends BaseModel {
     }
 
     // Cập nhật trạng thái đơn hàng
-    public function update($id, $status) {
+    public function update($id, $status)
+    {
         $sql = "UPDATE orders SET status = :status WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
@@ -49,9 +55,20 @@ class Order extends BaseModel {
             'status' => $status
         ]);
     }
+    // Cập nhật trạng thái Thanh toán
+    public function updatePayment_status($id, $payment_status)
+    {
+        $sql = "UPDATE orders SET payment_status = :payment_status WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+            'payment_status' => $payment_status
+        ]);
+    }
 
     // Thêm chi tiết đơn hàng
-    public function createOrderDetail($data) {
+    public function createOrderDetail($data)
+    {
         $sql = "INSERT INTO order_details (order_id, product_id, quantity, price) 
                 VALUES (:order_id, :product_id, :quantity, :price)";
         $stmt = $this->conn->prepare($sql);
@@ -59,7 +76,8 @@ class Order extends BaseModel {
     }
 
     // Lấy chi tiết đơn hàng (dùng cho trang chi tiết đơn hàng)
-    public function getOrderDetails($order_id) {
+    public function getOrderDetails($order_id)
+    {
         $sql = "SELECT od.*, p.name, p.image 
                 FROM order_details od 
                 JOIN product p ON od.product_id = p.id 

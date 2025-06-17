@@ -37,5 +37,7 @@ match($ctl) {
     'success' => (new CartController)->success(),
     'my-orders' => (new OrderController)->myOrders(),
     'order-detail' => (new OrderController)->orderDetail(),
+    'confirm-order' => (new OrderController)->confirmOrder(),
+    'confirm-delete-order' => (new OrderController)->confirmDeleteOrder(),
     default => (new HomeController)->index(),
 };

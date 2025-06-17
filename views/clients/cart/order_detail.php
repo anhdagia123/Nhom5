@@ -20,12 +20,25 @@
             case 3:
                 echo '<span class="badge bg-success">Hoàn thành</span>';
                 break;
+            case 4:
+                echo '<span class="badge bg-danger">Chờ xác nhận huỷ</span>';
+                break;
+            case 5:
+                echo '<span class="badge bg-danger">Đã huỷ</span>';
+                break;
             default:
                 echo '<span class="badge bg-secondary">Không xác định</span>';
         }
         ?>
         <br>
-        <strong>Phương thức thanh toán:</strong> <?= htmlspecialchars($order['payment_method']) ?>
+        <strong>Phương thức thanh toán:</strong> <?= htmlspecialchars($order['payment_method']) ?> <br>
+        <strong>Địa chỉ: </strong><?= htmlspecialchars($order['address']) ?> <br>
+        <p><strong>Trạng thái thanh toán:</strong>
+            <?= $order['payment_status'] == 1
+                ? '<span class="text-success">Đã thanh toán</span>'
+                : '<span class="text-danger">Chưa thanh toán</span>' ?>
+        </p>
+
     </div>
     <div class="table-responsive">
         <table class="table table-bordered align-middle">

@@ -16,7 +16,7 @@ class AdminCommentController
         $limit = 5;
         $offset = ($page - 1) * $limit;
         $commentModel = new CommentModelAdmin;
-        $comments = $commentModel->all($limit, $offset);
+        $comments = $commentModel->allWithPaging($limit, $offset);
         $totalComments = $commentModel->countAll();
         $totalPages = ceil($totalComments / $limit);
         $message = session_flash('message');

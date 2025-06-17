@@ -17,6 +17,8 @@
                         case 1: echo 'bg-info'; break;
                         case 2: echo 'bg-warning text-dark'; break;
                         case 3: echo 'bg-success'; break;
+                        case 4: echo 'bg-danger'; break;
+                        case 5: echo 'bg-danger'; break;
                     }
                 ?>">
                 <?= $statusText[$order['status']] ?>

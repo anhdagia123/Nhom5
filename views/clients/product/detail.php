@@ -76,21 +76,22 @@
           </form>
         <?php endif; ?>
 
-        <hr>
+          <hr>
         <div class="comment-list">
           <?php foreach ($comments as $row): ?>
+            <?php if ($row['status'] == 0): // Chỉ hiện bình luận có status = 0 ?>
             <div class="mb-3 pb-2 border-bottom">
               <strong class="text-dark"><?= htmlspecialchars($row['username']) ?></strong>:
               <span><?= nl2br(htmlspecialchars($row['content'])) ?></span>
               <div class="text-muted small"><?= $row['created_at'] ?></div>
             </div>
+            <?php endif; ?>
           <?php endforeach; ?>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Alert JS -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {

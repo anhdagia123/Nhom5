@@ -19,8 +19,8 @@
           <tbody>
    <?php 
 $total = 0;
-foreach($carts as $stt => $cart) : 
-    $id = $cart['id'] ?? $stt; // hoặc gán $id từ key nếu không có trong mảng
+$stt = 1;
+foreach($carts as $id => $cart) : 
     $quantity = isset($cart['quantity']) ? (int)$cart['quantity'] : 1;
     $price = isset($cart['price']) ? (float)$cart['price'] : 0;
     $name = isset($cart['name']) ? htmlspecialchars($cart['name']) : 'Không xác định';
@@ -29,7 +29,7 @@ foreach($carts as $stt => $cart) :
     $total += $subtotal;
 ?>
 <tr>
-    <th scope="row"><?= $stt + 1 ?></th>
+    <th scope="row"><?= $stt ?></th>
     <td>
         <?php if($image): ?>
             <img src="<?= $image ?>" alt="<?= $name ?>" width="60">
@@ -47,7 +47,7 @@ foreach($carts as $stt => $cart) :
         <a href="<?= ROOT_URL . '?ctl=delete-cart&id=' . $id ?>">Xóa</a>
     </td>
 </tr>
-<?php endforeach; ?>
+<?php  $stt++;  endforeach; ?>
 
 </tbody>
 

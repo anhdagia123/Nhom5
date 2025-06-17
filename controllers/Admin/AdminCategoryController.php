@@ -7,12 +7,21 @@ class AdminCategoryController {
             return header("location:" .  ROOT_URL);
         }
     }
+    public function index()
+    {
+        $categoryModel = new Category();
+        $limit = 5; // Số danh mục mỗi trang
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        if ($page < 1)
+            $page = 1;
+        $offset = ($page - 1) * $limit;
 
-    public function index() {
-        $categories = (new Category)->all();
-        // lấy thông báo từ session
+        $categories = $categoryModel->paginate($limit, $offset);
+        $totalCategories = $categoryModel->countAll();
+        $totalPages = ceil($totalCategories / $limit);
+
         $message = session_flash('message');
-        return view('admin.categories.list', compact('categories', 'message'));
+        return view('admin.categories.list', compact('categories', 'message', 'page', 'totalPages'));
     }
 
     public function create() {

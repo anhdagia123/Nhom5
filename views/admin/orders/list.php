@@ -1,4 +1,3 @@
-
 <?php include_once ROOT_DIR . "views/admin/header.php" ?>
 <div class="container">
   <div class="card shadow-sm border-0">
@@ -20,12 +19,14 @@
         </thead>
         <tbody>
           <?php
-            $statusText = [
-              0 => 'Chờ xác nhận',
-              1 => 'Đang xử lý',
-              2 => 'Đang giao hàng',
-              3 => 'Đã giao thành công'
-            ];
+          $statusText = [
+            0 => 'Chờ xác nhận',
+            1 => 'Đang xử lý',
+            2 => 'Đang giao hàng',
+            3 => 'Đã giao thành công',
+            4 => 'Xác nhận huỷ',
+            5 => 'Đã huỷ'
+          ];
           ?>
           <?php foreach ($orders as $order): ?>
             <tr>
@@ -36,12 +37,26 @@
               <td>
                 <span class="badge 
                   <?php
-                    switch ($order['status']) {
-                      case 0: echo 'bg-secondary'; break;
-                      case 1: echo 'bg-info'; break;
-                      case 2: echo 'bg-warning text-dark'; break;
-                      case 3: echo 'bg-success'; break;
-                    }
+                  switch ($order['status']) {
+                    case 0:
+                      echo 'bg-secondary';
+                      break;
+                    case 1:
+                      echo 'bg-info';
+                      break;
+                    case 2:
+                      echo 'bg-warning text-dark';
+                      break;
+                    case 3:
+                      echo 'bg-success';
+                      break;
+                    case 4:
+                      echo 'bg-danger';
+                      break;
+                    case 5:
+                      echo 'bg-danger';
+                      break;
+                  }
                   ?>">
                   <?= $statusText[$order['status']] ?>
                 </span>
@@ -49,12 +64,41 @@
               <td>
                 <select class="form-select form-select-sm order-status" data-id="<?= $order['id'] ?>">
                   <?php foreach ($statusText as $key => $text): ?>
-                    <option value="<?= $key ?>"
-                      <?= $order['status'] == $key ? 'selected' : ($key < $order['status'] ? 'disabled' : '') ?>
-                      <?= $order['status'] == $key ? 'data-current="1"' : '' ?>>
+                    <?php
+                    $current = $order['status'];
+
+                    // 1. Nếu trạng thái là 4 → chỉ cho hiện 4 và 5
+                    if ($current == 4 && !in_array($key, [4, 5])) {
+                      continue;
+                    }
+
+                    // 2. Nếu trạng thái là 5 → vẫn hiện tất cả (không continue)
+                
+                    // 3. Nếu trạng thái KHÁC 4 hoặc 5 → ẩn 4 và 5
+                    if (!in_array($current, [4, 5]) && in_array($key, [4, 5])) {
+                      continue;
+                    }
+
+                    // Đánh dấu đang là trạng thái hiện tại
+                    $isCurrent = $current == $key;
+
+                    // Xác định trạng thái có bị disable không
+                    $isDisabled = false;
+
+                    // 4. Không cho chọn lại trạng thái trước đó, hoặc trạng thái 3
+                    if (!$isCurrent && ($key < $current || $key == 3)) {
+                      $isDisabled = true;
+                    }
+
+                    // 5. Nếu trạng thái hiện tại là 5 (đã huỷ) → disable tất cả, trừ trạng thái hiện tại
+                    if ($current == 5 && !$isCurrent) {
+                      $isDisabled = true;
+                    }
+                    ?>
+                    <option value="<?= $key ?>" <?= $isCurrent ? 'selected data-current="1"' : '' ?>     <?= $isDisabled ? 'disabled' : '' ?>>
                       <?= $text ?>
                     </option>
-                  <?php endforeach ?>
+                  <?php endforeach; ?>
                 </select>
               </td>
               <td>

@@ -25,7 +25,7 @@ class AdminOrderController {
         $id = $_GET['id'];
         $order = (new OrderModel)->find($id);
         $orderDetails = (new OrderModel)->getOrderDetails($id);
-        $statusText = ['Chờ xác nhận', 'Đang xử lý', 'Đang giao hàng', 'Đã giao thành công'];
+        $statusText = ['Chờ xác nhận', 'Đang xử lý', 'Đang giao hàng', 'Đã giao thành công',"Xác nhận huỷ","Đã huỷ"];
         return view('admin.orders.detail', compact('order', 'orderDetails', 'statusText'));
     }
 
